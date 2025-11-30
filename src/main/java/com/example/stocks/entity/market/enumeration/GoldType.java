@@ -3,6 +3,7 @@ package com.example.stocks.entity.market.enumeration;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+// 금 단위
 @Getter
 @AllArgsConstructor
 public enum GoldType {

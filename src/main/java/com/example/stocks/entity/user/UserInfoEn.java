@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+// user_info 테이블
 @Entity
 @Table(name = "user_info")
 @Getter

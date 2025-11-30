@@ -35,6 +35,7 @@ public class WidgetService {
     private final UserFavoriteRe userFavoriteRepository;
     private final StockPriceRe stockPriceRepository;
 
+    // 코스피 지수 위젯
     @Transactional(readOnly = true)
     public KospiWidgetDto getLatestKospiIndex() {
         return kospiIndexRepository.findFirstByOrderByDateDesc()
@@ -42,6 +43,7 @@ public class WidgetService {
                 .orElseThrow(() -> new RuntimeException("코스피 지수 데이터를 찾을 수 없습니다."));
     }
 
+    // 금 시세 위젯
     @Transactional(readOnly = true)
     public GoldPriceWidgetDto getLatestGoldPrices() {
         var gold1kg = goldPriceRepository.findFirstByGoldTypeOrderByDateDesc(GoldType.GOLD_1KG).orElse(null);
@@ -49,6 +51,7 @@ public class WidgetService {
         return new GoldPriceWidgetDto(gold1kg, gold100g);
     }
 
+    // 유가 시세 위젯
     @Transactional(readOnly = true)
     public OilPriceWidgetDto getLatestOilPrices() {
         var gasoline = oilPriceRepository.findFirstByOilTypeOrderByDateDesc(OilType.GASOLINE).orElse(null);
@@ -57,15 +60,16 @@ public class WidgetService {
         return new OilPriceWidgetDto(gasoline, diesel, kerosene);
     }
 
+    // 코스피 차트 위젯
     @Transactional(readOnly = true)
     public List<ChartDataDto> getKospiChartData(String period) {
         LocalDate now = LocalDate.now();
         LocalDate startDate;
 
         switch (period.toLowerCase()) {
-            case "1m": startDate = now.minusMonths(1); break;
-            case "6m": startDate = now.minusMonths(6); break;
-            case "1y": default: startDate = now.minusYears(1); break;
+            case "1m": startDate = now.minusMonths(1); break; // 1개월
+            case "6m": startDate = now.minusMonths(6); break; // 6개월
+            case "1y": default: startDate = now.minusYears(1); break; // 1년
         }
 
         List<KospiIndexEn> kospiData = kospiIndexRepository.findByDateGreaterThanEqualOrderByDateAsc(startDate);
@@ -75,6 +79,7 @@ public class WidgetService {
                 .collect(Collectors.toList());
     }
 
+    // 즐겨찾기 위젯
     @Transactional(readOnly = true)
     public List<FavoriteWidgetDto> getFavoritesWidgetData(String loginId) {
         UserInfoEn user = userInfoRepository.findByLoginId(loginId)
@@ -91,12 +96,14 @@ public class WidgetService {
         return stockPriceRepository.findLatestPricesByShortCodes(favoriteShortCodes);
     }
 
+    // 거래량 Top5 위젯
     @Transactional(readOnly = true)
     public List<TopTradingWidgetDto> getTop5TradingVolume() {
         Pageable top5 = PageRequest.of(0, 5);
         return stockPriceRepository.findTopTradingStocks(top5);
     }
 
+    // 위젯 호출
     @Transactional(readOnly = true)
     public DashboardResponseDto getDashboardData(String loginId) {
         // 기존에 만들었던 개별 위젯 조회 메서드들을 모두 호출

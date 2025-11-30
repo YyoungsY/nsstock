@@ -19,6 +19,7 @@ public class StockService {
     private final UserInfoRe userInfoRepository;
     private final UserFavoriteRe userFavoriteRepository;
 
+    // 코스피 모든 주식 목록
     @Transactional(readOnly = true)
     public List<StockListItemDto> getKospiStockList() {
         return stockPriceRepository.findLatestStocksByMarket(MarketType.KOSPI);

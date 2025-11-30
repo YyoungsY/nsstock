@@ -7,6 +7,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
+// stock_Info 테이블
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

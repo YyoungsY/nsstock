@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface UserFavoriteRe extends JpaRepository<UserFavoriteEn, UserFavoriteId> { // <엔티티, 복합 키 타입>
 
+    // 사용자 별 즐겨찾기
     List<UserFavoriteEn> findAllByUserInfo(UserInfoEn userInfo);
     List<UserFavoriteEn> findAllByUserInfo_Uuid(String uuid);
 }

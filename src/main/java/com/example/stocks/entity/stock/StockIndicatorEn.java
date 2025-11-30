@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+// stock_indicator 테이블
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

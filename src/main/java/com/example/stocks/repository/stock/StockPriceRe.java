@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+// 주가 관련 리포지토리
 @Repository
 public interface StockPriceRe extends JpaRepository<StockPriceEn, Long> {
 

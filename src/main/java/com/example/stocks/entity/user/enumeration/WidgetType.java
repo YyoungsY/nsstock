@@ -3,6 +3,7 @@ package com.example.stocks.entity.user.enumeration;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+// 위젯 타입
 @Getter
 @AllArgsConstructor
 public enum WidgetType {

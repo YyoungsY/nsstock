@@ -1,5 +1,3 @@
-// 금 시세 테이블
-
 package com.example.stocks.entity.market;
 
 import com.example.stocks.entity.market.enumeration.GoldType;
@@ -11,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+// gold_price 테이블
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

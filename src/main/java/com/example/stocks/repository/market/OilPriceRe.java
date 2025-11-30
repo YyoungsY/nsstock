@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+// 유가
 @Repository
 public interface OilPriceRe extends JpaRepository<OilPriceEn, Integer> {
     Optional<OilPriceEn> findFirstByOilTypeOrderByDateDesc(OilType oilType);

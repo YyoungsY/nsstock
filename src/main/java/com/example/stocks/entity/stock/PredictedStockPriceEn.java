@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+// predicted_stock 테이블
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

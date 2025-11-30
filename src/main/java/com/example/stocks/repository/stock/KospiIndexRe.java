@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface KospiIndexRe extends JpaRepository<KospiIndexEn, LocalDate> {
 
+    // 코스피 종목 최신 날짜 기준으로 조회
     Optional<KospiIndexEn> findFirstByOrderByDateDesc();
     List<KospiIndexEn> findByDateGreaterThanEqualOrderByDateAsc(LocalDate startDate);
 }

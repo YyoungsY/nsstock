@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
+// 위젯 세팅 ID
 @NoArgsConstructor
 @EqualsAndHashCode
 public class UserWidgetSettingsId implements Serializable {

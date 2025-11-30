@@ -3,6 +3,7 @@ package com.example.stocks.entity.stock.enumeration;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+// 주식 종류 타입
 @Getter
 @AllArgsConstructor
 public enum StockType {

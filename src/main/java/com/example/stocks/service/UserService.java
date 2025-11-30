@@ -43,6 +43,7 @@ public class UserService {
         userInfoRepository.save(newUser);
         userInfoRepository.flush();
 
+        // 각 위젯의 기본위치
         List<UserWidgetSettingsEn> defaultWidgets = List.of(
                 new UserWidgetSettingsEn(newUser, WidgetType.FAVORITES.name(), 6),
                 new UserWidgetSettingsEn(newUser, WidgetType.KOSPI_INDEX.name(), 1),
@@ -54,6 +55,7 @@ public class UserService {
         userWidgetSettingsRepository.saveAll(defaultWidgets);
     }
 
+    // 유저 로그인
     public String login(UserLoginRequestDto requestDto) {
         UserInfoEn user = userInfoRepository.findByLoginId(requestDto.getLoginId())
                 .orElseThrow(() -> new IllegalArgumentException("아이디가 존재하지 않습니다."));
@@ -64,6 +66,7 @@ public class UserService {
         return "로그인 성공!";
     }
 
+    // 비밀번호 변경
     @Transactional
     public void updatePassword(String loginId, UserPasswordUpdateRequestDto requestDto) {
         UserInfoEn user = userInfoRepository.findByLoginId(loginId)
@@ -74,6 +77,7 @@ public class UserService {
         user.setPw(requestDto.getNewPassword());
     }
 
+    // 회원 탈퇴
     @Transactional
     public void withdraw(UserWithdrawalRequestDto requestDto) {
         UserInfoEn user = userInfoRepository.findByLoginId(requestDto.getLoginId())
@@ -85,6 +89,7 @@ public class UserService {
         userInfoRepository.delete(user);
     }
 
+    // 사용자 별 위젯 위치 설정
     @Transactional
     public void saveWidgetLayout(String loginId, WidgetLayoutDto layoutDto) {
         UserInfoEn user = userInfoRepository.findByLoginId(loginId)
@@ -108,6 +113,7 @@ public class UserService {
         userWidgetSettingsRepository.saveAll(newSettings);
     }
 
+    // 사용자별 즐겨찾기
     @Transactional
     public String toggleFavorite(String loginId, FavoriteToggleRequestDto requestDto) {
         UserInfoEn user = userInfoRepository.findByLoginId(loginId)
@@ -125,6 +131,7 @@ public class UserService {
         }
     }
 
+    // 사용자가 저장해둔 정보 불러오기
     @Transactional(readOnly = true)
     public MyPageResponseDto getMyPageData(String loginId) {
         UserInfoEn user = userInfoRepository.findByLoginId(loginId)

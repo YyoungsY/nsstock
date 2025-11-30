@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+// user_favorites 테이블
 @Entity
 @Table(name = "user_favorites")
 @IdClass(UserFavoriteId.class)
